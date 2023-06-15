@@ -1,5 +1,6 @@
 module DriverServices
   class GetByEmail
+    attr_accessor :email
     def initialize(email)
       @email = email
     end
