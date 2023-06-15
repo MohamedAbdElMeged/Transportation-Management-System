@@ -2,26 +2,26 @@ module Api
   module V1
     class TrucksController < ApplicationController
       before_action :authorized
-      before_action :set_truck
+      before_action :set_truck, only: [:assign_truck]
       def index
         @trucks = Truck.all
         render json: TruckBlueprint.render_as_hash(@trucks), status: :ok
       end
 
       def assign_truck
-        @drivers_truck = @driver.drivers_trucks.build
-        @drivers_truck.truck = @truck
-        if @drivers_truck.save
-          render json: DriversTruckBlueprint.render_as_hash(@drivers_truck), status: :created
-        else
-          render json: @drivers_truck.errors, status: :unprocessable_entity
-        end
+        @drivers_truck = TruckServices::AssignTruck.new(@driver, @truck).call
+        render json: DriversTruckBlueprint.render_as_hash(@drivers_truck, view: :assign_truck), status: :created
+      end
+
+      def assigned_trucks
+        @drivers_trucks = @driver.drivers_trucks
+        render json: DriversTruckBlueprint.render_as_hash(@drivers_trucks, view: :assigned_trucks), status: :ok
       end
 
       private
 
       def set_truck
-        @truck = Truck.find_by_id(params[:truck_id])
+        @truck = TruckServices::GetById.new(params[:id]).call
         render json: { error: 'Truck Not Found' }, status: 404 unless @truck
       end
     end

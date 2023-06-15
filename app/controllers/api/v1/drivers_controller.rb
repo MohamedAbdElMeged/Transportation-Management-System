@@ -18,8 +18,8 @@ module Api
       end
 
       def login
-        @driver = DriverServices::GetByEmail.new(login_params['email']).call
-        if @driver&.authenticate(login_params['password'])
+        @driver = DriverServices::Authenticate.new(login_params[:email], login_params[:password]).call
+        if @driver
           payload = Auth::JwtHelper.generate_payload(@driver)
           token = Auth::JwtHelper.encode(payload)
           render json: { token: token }, status: :ok

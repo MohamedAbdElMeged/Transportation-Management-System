@@ -53,12 +53,13 @@ AllCops:
     - "**/Thorfile"
     - "**/Vagabondfile"
     - "**/Vagrantfile"
-  Exclude:
     - "app/services/*"
+    - "config/routes.rb"
+  Exclude:
+
     - "**/bin/*"
     - "db/schema.rb"
     - "vendor/**/*"
-    - "config/routes.rb"
     - "node_modules/**/*"
     - ".git/**/*"
   # Default formatter will be used if no -f/--format option is given.

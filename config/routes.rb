@@ -2,12 +2,15 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   namespace :api do
     namespace :v1 do
-      resources :drivers,only: [:index, :create]
-      resources :trucks, only: [:index] do 
-        put "/assign_truck" , to: "trucks#assign_truck"
+      resources :drivers, only: %i(index create)
+      resources :trucks, only: [:index] do
+        collection do
+          get '/assigned_trucks', to: 'trucks#assigned_trucks'
+        end
+        put '/assign_truck', to: 'trucks#assign_truck'
       end
-      
-      post "/login", to: "drivers#login"
+
+      post '/login', to: 'drivers#login'
     end
   end
   # Defines the root path route ("/")

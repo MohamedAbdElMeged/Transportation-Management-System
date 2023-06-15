@@ -11,6 +11,8 @@ services:
     build: .
     command: bash -c "entrypoint.sh && bash init.sh"
     restart: on-failure
+    stdin_open: true
+    tty: true
     volumes:
       - .:/myapp
       - bundle:/usr/local/bundle:delegated

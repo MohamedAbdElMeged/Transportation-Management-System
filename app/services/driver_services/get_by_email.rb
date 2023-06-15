@@ -5,8 +5,7 @@ module DriverServices
     end
 
     def call
-      @driver = driver_by_email
-      @driver
+      driver_by_email
     end
 
     private
