@@ -49,6 +49,16 @@ group :development, :test do
   gem 'rubocop', require: false
 end
 
+group :test do
+  gem 'database_cleaner'
+  gem 'rspec-benchmark'
+  gem 'rspec-rails'
+  gem 'webmock'
+  gem 'factory_bot_rails'
+  gem 'faker'
+end
+
+
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
