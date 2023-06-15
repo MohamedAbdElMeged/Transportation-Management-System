@@ -24,7 +24,7 @@ module Api
           token = Auth::JwtHelper.encode(payload)
           render json: { token: token }, status: :ok
         else
-          render json: 'invalid email/password', status: :bad_request
+          render json: 'invalid email/password', status: :unauthorized
         end
       end
 
