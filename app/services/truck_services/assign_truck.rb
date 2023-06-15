@@ -1,5 +1,6 @@
 module TruckServices
   class AssignTruck
+    attr_accessor :driver, :truck
     def initialize(driver, truck)
       @driver = driver
       @truck = truck

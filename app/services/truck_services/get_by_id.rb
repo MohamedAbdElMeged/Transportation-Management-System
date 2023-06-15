@@ -1,5 +1,6 @@
 module TruckServices
   class GetById
+    attr_accessor :truck_id
     def initialize(truck_id)
       @truck_id = truck_id
     end
