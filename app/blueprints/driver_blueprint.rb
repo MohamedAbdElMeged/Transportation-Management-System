@@ -1,5 +1,5 @@
 class DriverBlueprint < Blueprinter::Base
-    identifier :id
-  
-    fields :email
-  end
+  identifier :id
+
+  fields :email
+end
