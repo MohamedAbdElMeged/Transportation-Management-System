@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :drivers,only: [:index, :create]
+      resources :trucks, only: [:index] do 
+        put "/assign_truck" , to: "trucks#assign_truck"
+      end
+      
       post "/login", to: "drivers#login"
     end
   end
