@@ -1,7 +1,7 @@
 module Api
   module V1
     class DriversController < ApplicationController
-      before_action :authorized, except: %i(create login)
+      skip_before_action :authorized
 
       def index
         @drivers = Driver.all
@@ -24,7 +24,7 @@ module Api
           token = Auth::JwtHelper.encode(payload)
           render json: { token: token }, status: :ok
         else
-          render json: 'invalid email/password', status: :unauthorized
+          render json: { message: 'invalid email/password' }, status: :unauthorized
         end
       end
 
