@@ -21,7 +21,7 @@ module Api
       private
 
       def set_truck
-        @truck = TruckServices::GetById.new(params[:id]).call
+        @truck = TruckServices::GetById.new(params[:truck_id]).call
         render json: { error: 'Truck Not Found' }, status: 404 unless @truck
       end
     end
