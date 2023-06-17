@@ -9,8 +9,13 @@ module Api
       end
 
       def assign_truck
-        @drivers_truck = TruckServices::AssignTruck.new(@driver, @truck).call
-        render json: DriversTruckBlueprint.render_as_hash(@drivers_truck, view: :assign_truck), status: :created
+        # @drivers_truck = TruckServices::AssignTruck.new(@driver, @truck).call
+        result = Trucks::AssignTruck.call(truck: @truck, driver: @driver)
+        if result.success?
+          render json: DriversTruckBlueprint.render_as_hash(result.drivers_truck, view: :assign_truck), status: :created
+        else
+          render json: { message: "can\'t assign" }, status: :unprocessable_entity
+        end
       end
 
       def assigned_trucks
@@ -21,7 +26,7 @@ module Api
       private
 
       def set_truck
-        @truck = TruckServices::GetById.new(params[:truck_id]).call
+        @truck = Truck.find_by(id: params[:truck_id])
         render json: { error: 'Truck Not Found' }, status: 404 unless @truck
       end
     end

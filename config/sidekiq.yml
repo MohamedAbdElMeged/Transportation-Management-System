@@ -1,0 +1,4 @@
+:queues:
+  # The default queue for all application jobs that don't have a specific queue.
+  - default
+  - fetch_trucks_queue

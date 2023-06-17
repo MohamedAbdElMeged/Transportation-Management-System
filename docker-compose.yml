@@ -23,6 +23,18 @@ services:
     depends_on:
       - db
       - redis
+  sidekiq:
+    build: .
+    restart: on-failure
+    volumes:
+      - .:/myapp
+    command: bundle exec sidekiq -C config/sidekiq.yml 
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+      - redis
+      - web
   redis:
     image: redis:alpine
     command: redis-server

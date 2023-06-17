@@ -1,5 +1,5 @@
 # config/scheduler.yml
 fetch_trucks_worker:
   cron: '0 0 * * *'
-  queue: default
+  queue: fetch_trucks_queue
   class: FetchTrucksWorker

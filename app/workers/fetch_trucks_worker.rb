@@ -1,5 +1,6 @@
 class FetchTrucksWorker
   inculde Sidekiq::Worker
+  sidekiq_options :queue => :fetch_trucks_queue
   def perform
     response = Trucks::FetchNewTrucks.call
     return if response.failure?
