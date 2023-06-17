@@ -14,7 +14,7 @@ module Trucks
     end
 
     def save_trucks(trucks)
-      Truck.import!(trucks)
+      Truck.import! trucks, on_duplicate_key_update: { conflict_target: [:id], columns: %i(name truck_type) }
     end
   end
 end
