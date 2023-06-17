@@ -1,1 +1,3 @@
-REDIS = Redis.new(host: (ENV['REDIS_HOST']).to_s)
+redis_config = Rails.application.config_for('redis').with_indifferent_access
+
+REDIS = Redis.new(host: redis_config[:host], port: redis_config[:port])

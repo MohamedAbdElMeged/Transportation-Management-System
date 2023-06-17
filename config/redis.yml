@@ -1,0 +1,10 @@
+default: &default
+    port: '6379'
+
+development:
+    <<: *default
+    host: <%= ENV['REDIS_HOST'] || 'localhost' %>
+
+test:
+    <<: *default
+    host: <%= ENV['REDIS_HOST'] || 'localhost' %>
