@@ -15,7 +15,7 @@ class ApplicationController < ActionController::API
 
     decoded_hash = Auth::JwtHelper.decode(token)
     decoded_hash = decoded_hash.with_indifferent_access
-    @driver = DriverServices::GetByEmail.new(decoded_hash['email']).call
+    @driver = Driver.find_by(email: decoded_hash['email'])
     @driver
   end
 
