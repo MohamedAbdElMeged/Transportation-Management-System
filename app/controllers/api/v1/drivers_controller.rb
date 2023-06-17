@@ -18,13 +18,13 @@ module Api
       end
 
       def login
-        driver = Drivers::Authenticate.call(login_params)
-        if driver.driver
-          payload = Auth::JwtHelper.generate_payload(driver.driver)
+        result = Drivers::Authenticate.call(login_params)
+        if result.success?
+          payload = Auth::JwtHelper.generate_payload(result.driver)
           token = Auth::JwtHelper.encode(payload)
           render json: { token: token }, status: :ok
         else
-          render json: { message: driver.message }, status: :unauthorized
+          render json: { message: result.message }, status: :unauthorized
         end
       end
 

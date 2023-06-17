@@ -9,7 +9,6 @@ module Api
       end
 
       def assign_truck
-        # @drivers_truck = TruckServices::AssignTruck.new(@driver, @truck).call
         result = Trucks::AssignTruck.call(truck: @truck, driver: @driver)
         if result.success?
           render json: DriversTruckBlueprint.render_as_hash(result.drivers_truck, view: :assign_truck), status: :created
