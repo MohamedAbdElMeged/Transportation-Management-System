@@ -2,6 +2,7 @@ module Trucks
   class AssignTruck
     include Interactor
     def call
+      context.fail!(message: 'driver and truck should be sent') unless context&.[]('driver') && context&.[]('truck')
       assign_truck
     end
 
