@@ -7,7 +7,7 @@ RSpec.describe 'Api::V1::DriversController', type: :request do
       get '/api/v1/drivers'
     end
     it 'returns http success' do
-      expect(json.size).to eq(10)
+      expect(json['data'].size).to eq(10)
       expect(response.status).to eq(200)
     end
   end

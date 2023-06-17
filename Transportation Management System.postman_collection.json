@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "5e7ee42c-cad5-4d52-a7f6-dbc73b510b12",
+		"name": "Transportation Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4773378"
+	},
+	"item": [
+		{
+			"name": "Drivers",
+			"item": [
+				{
+					"name": "Create Driver",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"driver\": {\n        \"email\": \"mohamed@illa.com\",\n        \"password\": \"12345678\",\n        \"password_confirmation\": \"12345678\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/drivers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"drivers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"response is ok\",  ()=>{",
+									"   if( pm.response.to.have.status(200)){",
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setEnvironmentVariable(\"token\", jsonData.token);",
+									"}",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"driver\": {\n        \"email\": \"alicsacsacnsacn@illa.com\",\n        \"password\": \"12345678\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/drivers/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"drivers",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all drivers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZW1haWwiOiJhaG1lZEBmdmYuY29tIiwiZXhwIjoxNjg2ODc3NTM2fQ.sM_Ks9I0XihIB8sqmZqgv0ERNoNchMYD8_Yv-VkfjQQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/drivers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"drivers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trucks",
+			"item": [
+				{
+					"name": "All Trucks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/trucks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"trucks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Truck",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/trucks/:truck_id/assign_truck",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"trucks",
+								":truck_id",
+								"assign_truck"
+							],
+							"variable": [
+								{
+									"key": "truck_id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assigned Trucks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/trucks/assigned_trucks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"trucks",
+								"assigned_trucks"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "external Api",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "API_KEY",
+						"value": "illa-trucks-2023",
+						"type": "text"
+					},
+					{
+						"key": "Total-Pages",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://task-api-8etf.onrender.com/api/v1/trucks",
+					"protocol": "https",
+					"host": [
+						"task-api-8etf",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"trucks"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "total_pages",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

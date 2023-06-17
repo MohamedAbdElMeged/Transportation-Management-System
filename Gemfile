@@ -14,9 +14,7 @@ gem 'activerecord-import'
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
 
-# serializers gems
-gem 'blueprinter'
-gem 'oj'
+gem 'jsonapi-serializer'
 
 # auth gems
 gem 'bcrypt'

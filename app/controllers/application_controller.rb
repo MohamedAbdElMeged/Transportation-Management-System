@@ -14,6 +14,8 @@ class ApplicationController < ActionController::API
     return unless token
 
     decoded_hash = Auth::JwtHelper.decode(token)
+    return unless decoded_hash
+
     decoded_hash = decoded_hash.with_indifferent_access
     @driver = Driver.find_by(email: decoded_hash['email'])
     @driver

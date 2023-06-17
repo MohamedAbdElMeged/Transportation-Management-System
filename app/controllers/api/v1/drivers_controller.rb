@@ -5,13 +5,13 @@ module Api
 
       def index
         @drivers = Driver.all
-        render json: DriverBlueprint.render_as_hash(@drivers), status: :ok
+        render json: DriverSerializer.new(@drivers)
       end
 
       def create
         @driver = Driver.new(driver_params)
         if @driver.save
-          render json: DriverBlueprint.render_as_hash(@driver), status: :created
+          render json: DriverSerializer.new(@driver), status: :created
         else
           render json: @driver.errors, status: :unprocessable_entity
         end

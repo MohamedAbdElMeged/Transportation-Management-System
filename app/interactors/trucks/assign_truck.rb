@@ -9,7 +9,7 @@ module Trucks
     private
 
     def assign_truck
-      context.drivers_truck = DriversTruck.create_or_find_by(driver_id: context.driver.id, truck_id: context.truck.id)
+      context.drivers_truck = DriversTruck.find_or_create_by(driver_id: context.driver.id, truck_id: context.truck.id)
     end
   end
 end

@@ -8,6 +8,8 @@ module Auth
 
     def self.decode(token)
       JWT.decode(token, SECRET_KEY)[0]
+    rescue JWT::ExpiredSignature
+      nil
     end
 
     def self.generate_payload(driver)

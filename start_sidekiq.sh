@@ -1,0 +1,1 @@
+bundle install && rake db:create db:migrate && bundle exec sidekiq -C config/sidekiq.yml 

@@ -28,7 +28,7 @@ services:
     restart: on-failure
     volumes:
       - .:/myapp
-    command: bundle exec sidekiq -C config/sidekiq.yml 
+    command: bash -C "start_sidekiq.sh"
     env_file:
       - ./.env
     depends_on:
