@@ -13,7 +13,7 @@ Docker compose
 Sidekiq
 
 
-## How to use ##
+## How to run ##
 1. build the solution 
 ```
 docker compose build
@@ -35,10 +35,20 @@ SIDEKIQ_DASHBOARD_PASSWORD=dummy
 ```
 docker compose up
 ```
-4. Access the API through http://localhost:3000/
+4. Access the APIs through http://localhost:3000/
 
 > Note: you can find postman collection
 
+## Architecture ##
+
+## Class Diagram ##
+
+## Flow Charts ##
 
 
 
+
+## Testing ##
+- Unit Testing
+- Integration Testing
+- E2E Testing (API Testing)
