@@ -6,9 +6,10 @@ class FetchTrucksWorker
     return if response.failure?
 
     total_trucks_from_headers = response.response_headers&.[]('total-count')
-    total_trucks_from_db = REDIS.get('total_trucks_count_in_db')
+    total_trucks_from_db = REDIS.get('totalf_trucks_count_in_db')
     while total_trucks_from_db.to_i < total_trucks_from_headers.to_i
-      Trucks::FetchNewTrucks.call
+      response = Trucks::FetchNewTrucks.call
+      break if response.failure?
       total_trucks_from_db = REDIS.get('total_trucks_count_in_db')
     end
   end

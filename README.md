@@ -42,11 +42,15 @@ docker compose up
 ## Architecture ##
 
 ## Class Diagram ##
+![Alt text](diagrams/image.png)
 
 ## Flow Charts ##
+- Fetch New Trucks Service
+![Alt text](diagrams/fetch_new_trucks_diagram.png)
 
 
-
+- Fetch Trucks Worker
+![Alt text](diagrams/fetch_trucks_worker_diagram.png)
 
 ## Testing ##
 - Unit Testing
