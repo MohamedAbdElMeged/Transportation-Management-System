@@ -44,13 +44,16 @@ RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
+    REDIS.flushdb
   end
   # start the transaction strategy as examples are run
   config.before(:each) do
     DatabaseCleaner.start
+    REDIS.flushdb
   end
   config.after(:each) do
     DatabaseCleaner.clean
+    REDIS.flushdb
   end
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

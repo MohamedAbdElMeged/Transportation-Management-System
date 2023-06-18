@@ -1,5 +1,5 @@
 module Trucks
-  class EditUrl
+  class ConstructUrl
     include Interactor
 
     def call
@@ -9,8 +9,11 @@ module Trucks
     private
 
     def edit_url
-      params = HttpHelper.add_params(context.params)
       url = ENV['TRUCK_API_URL']
+      return url unless context.params
+
+      params = HttpHelper.add_params(context.params)
+
       url + params
     end
   end

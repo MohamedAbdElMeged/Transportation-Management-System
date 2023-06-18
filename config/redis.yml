@@ -3,8 +3,10 @@ default: &default
 
 development:
     <<: *default
+    db: 0 
     host: <%= ENV['REDIS_HOST'] || 'localhost' %>
 
 test:
     <<: *default
+    db: 2
     host: <%= ENV['REDIS_HOST'] || 'localhost' %>

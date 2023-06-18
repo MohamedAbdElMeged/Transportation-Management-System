@@ -6,7 +6,7 @@ This backend uses the following technologies:
 
 Ruby on Rails 7.0.5
 Postgresql 12.1
-Redis latest
+Redis
 JWT 
 Docker
 Docker compose 
@@ -36,5 +36,9 @@ SIDEKIQ_DASHBOARD_PASSWORD=dummy
 docker compose up
 ```
 4. Access the API through http://localhost:3000/
+
+> Note: you can find postman collection
+
+
 
 
