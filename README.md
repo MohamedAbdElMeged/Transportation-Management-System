@@ -39,7 +39,13 @@ docker compose up
 
 > Note: you can find postman collection
 
-## Architecture ##
+
+## Features ## 
+- Create a new driver account with the given email and password
+- Authenticate a driver with the given email and password and return a JWT token
+- Return a list of all trucks 
+- Assign the current driver to a truck with a given truck ID
+- Return a list of all trucks that the current driver is assigned to
 
 ## Class Diagram ##
 ![Alt text](diagrams/image.png)
@@ -52,7 +58,32 @@ docker compose up
 - Fetch Trucks Worker
 ![Alt text](diagrams/fetch_trucks_worker_diagram.png)
 
-## Testing ##
+## Useful Commands ##
+```
+# lists containers for the given docker compose configuration
+docker compose ps
+
+# lists all running containers in Docker engine
+docker ps
+
+# access Backend console
+docker exec -it transport-management-system-web-1 /bin/bash
+
+# access byebug while calling api
+# first run docker ps
+# output should be like that
+CONTAINER ID   IMAGE                                 COMMAND                  CREATED       STATUS       PORTS                    NAMES
+0595644f7502   transport-management-system_sidekiq   "entrypoint.sh bash …"   2 hours ago   Up 2 hours   3000/tcp                 transport-management-system-sidekiq-1
+528ec2087bc9   transport-management-system_web       "entrypoint.sh bash …"   2 hours ago   Up 2 hours   0.0.0.0:3000->3000/tcp   transport-management-system-web-1
+d1d0d79fd8aa   postgres:12.1                         "docker-entrypoint.s…"   2 hours ago   Up 2 hours   5432/tcp                 transport-management-system-db-1
+1ed44417e177   redis:alpine                          "docker-entrypoint.s…"   2 hours ago   Up 2 hours   0.0.0.0:6380->6379/tcp   transport-management-system-redis-1
+
+# take transport-management-system_web  container ID which will be 528ec2087bc9
+# Run docker attach 528ec2087bc9 
+
+
+```
+## Testing using RSpec ##
 - Unit Testing
 - Integration Testing
 - E2E Testing (API Testing)
