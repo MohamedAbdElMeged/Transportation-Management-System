@@ -16,4 +16,15 @@ RSpec.describe Truck, type: :model do
       end
     end
   end
+  describe 'Delete Truck' do
+    let(:truck) { create :truck }
+    before do
+      REDIS.set('total_trucks_count_in_db', '5')
+      truck.destroy
+    end
+
+    it 'should decrement count' do
+      expect(REDIS.get('total_trucks_count_in_db').to_i).to eq(4)
+    end
+  end
 end
