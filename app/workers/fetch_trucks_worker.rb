@@ -1,5 +1,5 @@
 class FetchTrucksWorker
-  inculde Sidekiq::Worker
+  include Sidekiq::Worker
   sidekiq_options queue: :fetch_trucks_queue
   def perform
     response = Trucks::FetchNewTrucks.call
