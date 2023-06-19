@@ -18,7 +18,7 @@ describe Trucks::SetNextPage do
         REDIS.set('next_page', 1)
       end
 
-      let(:params) { { response_body_count: 22, response_headers: { 'current-page' => 2 } } }
+      let(:params) { { response_body_count: 22, response_headers: { 'current-page' => 2, 'total-pages' => '2' } } }
       let(:context_response) { subject.call(params) }
       it "shouldn\'t change next_page" do
         context_response
